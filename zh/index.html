@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>规则 | McdACCS Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d0f14;
+            --bg-secondary: #1a1d24;
+            --bg-tertiary: #232830;
+            --text-primary: #e8e9ed;
+            --text-secondary: #b8bcc4;
+            --gold: #d4af37;
+            --gold-dim: #a68b2d;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --border: #2d3340;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .header {
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 60px 20px 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse, var(--gold-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .logo { font-size: 48px; margin-bottom: 16px; }
+        .header h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .header h1 span { color: var(--gold); }
+        .header p { color: var(--text-secondary); font-size: 18px; }
+
+        .version-badge {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px 100px; }
+        .section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .section h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+
+        .section-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .section-content p { color: var(--text-secondary); margin-bottom: 16px; }
+        .section-content p:last-child { margin-bottom: 0; }
+        .section-content strong { color: var(--text-primary); font-weight: 600; }
+        .section-content ul { list-style: none; margin: 16px 0; }
+
+        .section-content li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .section-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .section-content li:last-child { margin-bottom: 0; }
+
+        .highlight-box {
+            background: var(--gold-glow);
+            border: 1px solid var(--gold-dim);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p { color: var(--text-primary) !important; margin: 0 !important; }
+
+        .warning-box {
+            background: rgba(212, 58, 58, 0.1);
+            border: 1px solid rgba(212, 58, 58, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box p { color: #e8e9ed !important; margin: 0 !important; }
+
+        .contact-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-section h3 { font-size: 24px; font-weight: 600; margin-bottom: 16px; }
+        .contact-section p { color: var(--text-secondary); margin-bottom: 24px; }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--gold);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            background: var(--gold-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--gold-glow);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer p { color: var(--text-secondary); font-size: 14px; }
+        .footer a { color: var(--gold); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .header { padding: 40px 16px 60px; }
+            .logo { font-size: 40px; }
+            .header h1 { font-size: 26px; }
+            .container { padding: 40px 16px 80px; }
+            .section-content { padding: 20px; }
+            .section h2 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🦆</div>
+        <h1>McdACCS Store <span>规则</span></h1>
+        <p>使用服务前请阅读</p>
+        <div class="version-badge">版本 1.0 • 2026年1月</div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>关于服务</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>McdACCS Store</strong> 是一个自动化的 Telegram 账户商城。我们是优质账户的直接供应商。</p>
+                <p>付款成功后，您将收到一个 ZIP 压缩包，包含：</p>
+                <ul>
+                    <li>session — 会话文件</li>
+                    <li>JSON — 账户数据</li>
+                </ul>
+                <p>每个产品单位都有自己的一对文件。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>付款</h2>
+            </div>
+            <div class="section-content">
+                <p>我们仅通过官方 CryptoBot 接受 <strong>USDT</strong> 付款。</p>
+                <p>下单时，机器人会自动生成发票，您可以直接在 Telegram 中点击几下完成付款。</p>
+                <div class="highlight-box">
+                    <p>💡 付款即时安全处理。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>商品交付</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>自动交付：</strong>付款确认后，ZIP 压缩包会自动发送。</p>
+                <p><strong>手动交付：</strong>在极少数情况下，由于技术原因，商品会在几小时内手动交付。如果等待时间过长，请联系客服。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>格式转换</h2>
+            </div>
+            <div class="section-content">
+                <p>如果文件格式（session + JSON）不适合您，我们可以<strong>免费转换</strong>为您需要的格式。</p>
+                <p>请联系客服。转换将在几小时内完成。</p>
+                <div class="warning-box">
+                    <p>⚠️ 对于小批量商品的频繁转换请求，我们保留拒绝的权利。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>退款和更换</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>可以退款/更换的情况：</strong></p>
+                <ul>
+                    <li>商品从收到时就无法使用</li>
+                    <li>提供了从购买时开始的视频录像</li>
+                </ul>
+                <p><strong>无法退款的情况：</strong></p>
+                <ul>
+                    <li>商品因买家原因损坏</li>
+                    <li>没有视频证据</li>
+                    <li>问题无法验证（商品在本地正常工作）</li>
+                </ul>
+                <div class="warning-box">
+                    <p>🔴 在无法验证的争议情况下，决定将有利于商店，因为我们只上传正常工作的商品。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>争议和证据</h2>
+            </div>
+            <div class="section-content">
+                <p>解决争议情况需要提供：</p>
+                <ul>
+                    <li>订单 ID（来自"个人资料"部分）</li>
+                    <li>展示问题的视频录像</li>
+                    <li>录像必须从收到商品时开始</li>
+                </ul>
+                <p>没有证据的退款请求将不予受理。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2>订单状态</h2>
+            </div>
+            <div class="section-content">
+                <p>您可以通过"👤 个人资料"按钮在机器人中查看所有订单信息：</p>
+                <ul>
+                    <li>订单历史</li>
+                    <li>当前状态</li>
+                    <li>退款信息</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2>使用条款</h2>
+            </div>
+            <div class="section-content">
+                <p>我们的产品<strong>仅供合法使用</strong>。</p>
+                <div class="warning-box">
+                    <p>🚫 如发现账户被非法使用，我们保留在不解释原因的情况下终止合作并采取我们认为必要措施的权利。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2>隐私</h2>
+            </div>
+            <div class="section-content">
+                <p>我们存储最少的数据：</p>
+                <ul>
+                    <li>Telegram ID — 用于识别</li>
+                    <li>订单历史 — 用于处理争议</li>
+                </ul>
+                <p>我们不会与第三方共享您的数据。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2>规则变更</h2>
+            </div>
+            <div class="section-content">
+                <p>规则可能在不事先通知的情况下更新。</p>
+                <p>使用机器人即表示您自动同意当前版本的规则。</p>
+            </div>
+        </section>
+    </main>
+
+    <section class="contact-section">
+        <h3>有问题吗？</h3>
+        <p>我们的客服随时准备帮助您</p>
+        <a href="https://t.me/emilyaitest" class="contact-btn">
+            💬 联系客服
+        </a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 McdACCS Store • <a href="https://t.me/McdACCS_AIBot">@McdACCS_AIBot</a></p>
+    </footer>
+</body>
+</html>
